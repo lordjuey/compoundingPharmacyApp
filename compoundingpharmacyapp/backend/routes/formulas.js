@@ -42,10 +42,11 @@ newFormula.save()
   router.route('/update/:id').post((req, res) => {
     Formula.findById(req.params.id)
       .then(Formula => {
-        Formula.username = req.body.username;
-        Formula.description = req.body.description;
-        Formula.duration = Number(req.body.duration);
-        Formula.date = Date.parse(req.body.date);
+        Formula.formulaname = req.body.username;
+        Formula.formulatype = req.body.description;
+        Formula.strength = req.body.duration;
+        Formula.noteDate = Date.parse(req.body.date);
+        Formula.formulaNote = req.body.formulaNote;
   
         Formula.save()
           .then(() => res.json('Formula updated!'))
@@ -53,7 +54,6 @@ newFormula.save()
       })
       .catch(err => res.status(400).json('Error: ' + err));
 });
-
 
 
 module.exports = router;
