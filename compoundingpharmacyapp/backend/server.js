@@ -18,12 +18,8 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-
 const formulaRouter = require('./routes/formulas');
 const usersRouter = require('./routes/users');
-
-app.use(app.router);
-routes.initialize(app);
 
 app.use('/formulas', formulaRouter);
 app.use('/users', usersRouter);
