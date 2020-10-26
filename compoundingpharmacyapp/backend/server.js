@@ -21,7 +21,7 @@ connection.once('open', () => {
 const formulaRouter = require('./routes/formulas');
 const usersRouter = require('./routes/users');
 
-app.use('/exercises', formulaRouter);
+app.use('/formulas', formulaRouter);
 app.use('/users', usersRouter);
 
 app.listen(port, () => {
