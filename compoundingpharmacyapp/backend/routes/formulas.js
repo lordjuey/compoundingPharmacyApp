@@ -28,27 +28,27 @@ newFormula.save()
  .catch((err => res.status(400).json('Error: ' + error)));
 
  router.route('/:id').get((req, res) => {
-    Exercise.findById(req.params.id)
-      .then(exercise => res.json(exercise))
+    Formula.findById(req.params.id)
+      .then(Formula => res.json(Formula))
       .catch(err => res.status(400).json('Error: ' + err));
   });
   
   router.route('/:id').delete((req, res) => {
-    Exercise.findByIdAndDelete(req.params.id)
-      .then(() => res.json('Exercise deleted.'))
+    Formula.findByIdAndDelete(req.params.id)
+      .then(() => res.json('Formula deleted.'))
       .catch(err => res.status(400).json('Error: ' + err));
   });
   
   router.route('/update/:id').post((req, res) => {
-    Exercise.findById(req.params.id)
-      .then(exercise => {
-        exercise.username = req.body.username;
-        exercise.description = req.body.description;
-        exercise.duration = Number(req.body.duration);
-        exercise.date = Date.parse(req.body.date);
+    Formula.findById(req.params.id)
+      .then(Formula => {
+        Formula.username = req.body.username;
+        Formula.description = req.body.description;
+        Formula.duration = Number(req.body.duration);
+        Formula.date = Date.parse(req.body.date);
   
-        exercise.save()
-          .then(() => res.json('Exercise updated!'))
+        Formula.save()
+          .then(() => res.json('Formula updated!'))
           .catch(err => res.status(400).json('Error: ' + err));
       })
       .catch(err => res.status(400).json('Error: ' + err));
