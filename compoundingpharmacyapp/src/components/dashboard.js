@@ -9,8 +9,9 @@ export default class Dashboard extends Component {
 
     render() {
         return (
-            <div>
-                <p>Lets get some work done </p>
+            <div style={{display:"flex", justifyContent:"center", margin:"20%", flexDirection:'column'}}>
+                <p style={{margin:"5%"}}>Lets get some work done </p>
+                <p style={{margin:"5%"}}>HellowPharmacist </p>
             </div>
         )
     }

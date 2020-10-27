@@ -178,7 +178,7 @@ export default class EditExercise extends Component {
             <input
               type="submit"
               value="Edit Exercise Log"
-              className="btn btn-primary"
+              className="btn btn-dark"
             />
           </div>
         </form>

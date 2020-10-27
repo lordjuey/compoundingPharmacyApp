@@ -52,7 +52,7 @@ export default class AddPharmacist extends Component {
                 />
           </div>
           <div className="form-group">
-            <input type="submit" value="Create pharmacist" className="btn btn-primary" />
+            <input type="submit" value="Create pharmacist" className="btn btn-dark" />
           </div>
         </form>
       </div>

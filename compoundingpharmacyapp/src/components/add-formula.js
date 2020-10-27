@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Form from "react-bootstrap/Form";
+
 
 export default class AddFormula extends Component {
   constructor(props) {
@@ -28,21 +28,19 @@ export default class AddFormula extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost3000/pharmacists/").then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          pharmacists: response.data.map((pharmacist) => pharmacist.phName),
-          phName: response.data[0].phName,
-        });
-      }
-    });
-  }
-
-  componentDidMount() {
-    this.setState({
-      formulas: ["test formula"],
-      formulaname: "test formula",
-    });
+    axios
+      .get("http://localhost5000/pharmacists/")
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            pharmacists: response.data.map((pharmacist) => pharmacist.phName),
+            phName: response.data[0].phName,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   onChangeFormulaname(e) {
@@ -50,6 +48,7 @@ export default class AddFormula extends Component {
       formulaname: e.target.value,
     });
   }
+
   onChangephName(e) {
     this.setState({
       phName: e.target.value,
@@ -80,7 +79,7 @@ export default class AddFormula extends Component {
     e.preventDefault();
 
     const formula = {
-      phnName: this.state.phName,
+      phName: this.state.phName,
       formulaname: this.state.formulaname,
       formulatype: this.state.formulatype,
       strength: this.state.strength,
@@ -91,7 +90,7 @@ export default class AddFormula extends Component {
     console.log(formula);
 
     axios
-      .post("http://localhost:5000/formula/add", formula)
+      .post("http://localhost:5000/formulas/add", formula)
       .then((res) => console.log(res.data));
 
     window.location = "/formulaList"; // takes back to the formula list once its added
@@ -101,7 +100,6 @@ export default class AddFormula extends Component {
     return (
       <div>
         <h3>Add new formula</h3>
-
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Pharmacist : </label>
@@ -109,7 +107,7 @@ export default class AddFormula extends Component {
               ref="userInput"
               required
               className="form-control"
-              value={this.state.phName}
+              value={this.state.phnName}
               onChange={this.onChangephName}
             >
               {this.state.pharmacists.map(function (pharmacist) {
@@ -161,18 +159,17 @@ export default class AddFormula extends Component {
             </div>
           </div>
 
-          {/* <div className="form-group">
+          <div className="form-group">
             <label> Formula Note / Issues: </label>
-            <input
-              type="text"
-              required
+            <textarea
               className="form-control"
+              rows="10"
               value={this.state.formulaNote}
               onChange={this.onChangeFormulaNote}
             />
-          </div> */}
+          </div>
 
-          <Form.Group controlId="exampleForm.ControlTextarea1">
+          {/* <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label> Formula Note / Issues :</Form.Label>
             <Form.Control
               as="textarea"
@@ -180,7 +177,7 @@ export default class AddFormula extends Component {
               value={this.state.formulaNote}
               onChange={this.onChangeFormulaNote}
             />
-          </Form.Group>
+          </Form.Group> */}
           {/* 
           <div className="form-group">
             <label>Example textarea</label>
@@ -196,7 +193,7 @@ export default class AddFormula extends Component {
             <input
               type="submit"
               value="Add new formula"
-              className="btn btn-primary"
+              className="btn btn-dark"
             />
           </div>
         </form>

@@ -11,17 +11,17 @@ app.use(cors());
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
+mongoose.connect(uri, { useNewUrlParser: true, useFindAndModify: false, }
 );
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-const formulaRouter = require('./routes/formulas');
+const formulasRouter = require('./routes/formulas');
 const pharmacistsRouter = require('./routes/pharmacists');
 
-app.use('/formulas', formulaRouter);
+app.use('/formulas', formulasRouter);
 app.use('/pharmacists', pharmacistsRouter);
 
 app.listen(port, () => {
