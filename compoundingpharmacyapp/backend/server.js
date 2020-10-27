@@ -19,10 +19,10 @@ connection.once('open', () => {
 })
 
 const formulaRouter = require('./routes/formulas');
-const usersRouter = require('./routes/users');
+const pharmacistsRouter = require('./routes/pharmacists');
 
 app.use('/formulas', formulaRouter);
-app.use('/users', usersRouter);
+app.use('/pharmacists', pharmacistsRouter);
 
 app.listen(port, () => {
     console.log(`LORDJUEY XXX---///Server is running on port: ${port}`);

@@ -14,7 +14,6 @@ router.route('/add').post((req,res)=> {
     const noteDate = Date.parse(req.body.noteDate);
     const formulaNote = req.body.formulaNote;
 
-
     const newFormula = new Formula({
     formulaname,
     formulatype,
@@ -23,9 +22,10 @@ router.route('/add').post((req,res)=> {
     formulaNote,
 });
 
-newFormula.save()
- .then(()=> res.json ('New formula joined the chaos!'))
- .catch((err => res.status(400).json('Error: ' + error)));
+  newFormula.save()
+   .then(()=> res.json ('New formula joined the chaos!'))
+   .catch((err => res.status(400).json('Error: ' + error)));
+});
 
  router.route('/:id').get((req, res) => {
     Formula.findById(req.params.id)
@@ -54,6 +54,5 @@ newFormula.save()
       })
       .catch(err => res.status(400).json('Error: ' + err));
 });
-
 
 module.exports = router;

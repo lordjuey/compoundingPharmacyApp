@@ -1,17 +1,18 @@
 const router = require('express').Router();
-let User = require('../models/user.model');
+let Pharmacist = require('../models/pharmacist.model');
 
 router.route('/').get((req,res)=> {
-    User.find()
-    .then(users => res.json(users))
+    Pharmacist.find()
+    .then(pharmacists => res.json(pharmacists))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route ('/add').post ((req,res)=>{
-    const username = req.body.username;
-    const newUser = new User({username});
+router.route('/add').post((req,res)=>{
 
-    newUser.save()
+    const phName = req.body.phName;
+    const newPharmacist = new Pharmacist({phName});
+
+    newPharmacist.save()
     .then(()=> res.json('new pharmacist added'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
