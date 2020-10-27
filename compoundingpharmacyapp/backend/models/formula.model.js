@@ -8,9 +8,11 @@ const formulaSchema = new Schema({
     strength: {type:String, required:true},
     noteDate: {type:Date, required : true},
     formulaNote: {type:String, required :true},
-},{
+},
+{
     timestamps: true,
-});
+}
+);
 
 const Formula = mongoose.model('Formula', formulaSchema);
 

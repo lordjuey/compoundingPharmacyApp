@@ -29,12 +29,12 @@ export default class AddFormula extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost5000/pharmacists/")
+      .get("http://localhost:5000/pharmacists/")
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
             pharmacists: response.data.map((pharmacist) => pharmacist.phName),
-            phName: response.data[0].phName,
+            pharmacist: response.data[0].phName,
           });
         }
       })
@@ -97,27 +97,27 @@ export default class AddFormula extends Component {
   }
 
   render() {
+    console.log(this.state.pharmacists);
     return (
       <div>
         <h3>Add new formula</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Pharmacist : </label>
-            <select
-              ref="userInput"
+            <select ref="userInput"
               required
               className="form-control"
-              value={this.state.phnName}
-              onChange={this.onChangephName}
-            >
-              {this.state.pharmacists.map(function (pharmacist) {
-                return (
-                  <option key={pharmacist} value={pharmacist}>
-                    {pharmacist}
-                  </option>
-                );
-              })}
-            </select>
+              value={this.state.phName}
+              onChange={this.onChangephName}>
+              {
+                this.state.pharmacists.map(function(pharmacist) {
+                  return <option 
+                    key={pharmacist}
+                    value={pharmacist}>{pharmacist}
+                    </option>;
+                })
+              }
+          </select>
           </div>
           <div className="form-group">
             <label> Formula Name: </label>

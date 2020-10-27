@@ -42,12 +42,13 @@ export default class EditExercise extends Component {
         console.log(error);
       });
 
-    axios
+      axios
       .get("http://localhost:5000/pharmacists/")
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
-            users: response.data.map((user) => user.phName),
+            pharmacists: response.data.map((pharmacist) => pharmacist.phName),
+            pharmacist: response.data[0].phName,
           });
         }
       })
@@ -55,6 +56,7 @@ export default class EditExercise extends Component {
         console.log(error);
       });
   }
+
 
   onChangeFormulaname(e) {
     this.setState({
@@ -116,23 +118,22 @@ export default class EditExercise extends Component {
       <div>
         <h3>Edit Formula Log</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
+        <div className="form-group">
             <label>Pharmacist : </label>
-            <select
-              ref="userInput"
+            <select ref="userInput"
               required
               className="form-control"
               value={this.state.phName}
-              onChange={this.onChangephName}
-            >
-              {this.state.pharmacists.map(function (pharmacist) {
-                return (
-                  <option key={pharmacist} value={pharmacist}>
-                    {pharmacist}
-                  </option>
-                );
-              })}
-            </select>
+              onChange={this.onChangephName}>
+              {
+                this.state.pharmacists.map(function(pharmacist) {
+                  return <option 
+                    key={pharmacist}
+                    value={pharmacist}>{pharmacist}
+                    </option>;
+                })
+              }
+          </select>
           </div>
           <div className="form-group">
             <label> Formula Name: </label>
@@ -172,6 +173,16 @@ export default class EditExercise extends Component {
                 onChange={this.onChangeNoteDate}
               />
             </div>
+          </div>
+
+          <div className="form-group">
+            <label> Formula Note / Issues: </label>
+            <textarea
+              className="form-control"
+              rows="10"
+              value={this.state.formulaNote}
+              onChange={this.onChangeFormulaNote}
+            />
           </div>
 
           <div className="form-group">

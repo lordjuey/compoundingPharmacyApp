@@ -52,7 +52,7 @@ export default class FormulaList extends Component {
   render() {
     return (
       <div>
-        <h3>Logged formula</h3>
+        <h3>Flagged formulas</h3>
         <br></br>
         <table className="table">
           <thead className="thead-light">
@@ -60,8 +60,9 @@ export default class FormulaList extends Component {
               <th>Formula Name</th>
               <th>Formula type</th>
               <th>Strength</th>
-              <th>Date</th>
               <th>Note/Issues</th>
+              <th>Date</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

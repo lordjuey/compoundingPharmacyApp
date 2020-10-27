@@ -9,7 +9,7 @@ export default class AddPharmacist extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      phName: '',
+      pharmacist: '',
     };
   }
 
