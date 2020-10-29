@@ -23,6 +23,12 @@
   ## License
   MIT
 
+
+  ## Screenshot 
+  
+  ![Screen Shot 2020-10-29 at 3 40 48 pm](https://user-images.githubusercontent.com/65110668/97526421-2dc15f80-19fd-11eb-8f09-354bb65d1f51.png)
+
+  
   ## Installation - dependency
   ~~~
   npm i 
